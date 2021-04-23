@@ -36,19 +36,7 @@ public class Sw {
             System.out.println(response.toString());
         }
 
-//        InputStream responseStream = connection.getInputStream();
-//
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//        SampleRes str=null;
-//
-//        try {
-//            System.out.println("JJJJJJJJJJJJJJJJ");
-//            str = mapper.readValue(responseStream , SampleRes.class );
-//        } catch (JsonMappingException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("The Res "  + str.getStatus() );
+
 
     }
 

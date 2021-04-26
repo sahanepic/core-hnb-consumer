@@ -1,41 +1,33 @@
-package com.sahanbcs;
+package com.sahanbcs.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sahanbcs.models.Enmorators.DiliveryStatus;
 import com.sahanbcs.models.Enmorators.Encoding;
-import com.sahanbcs.models.recive.RequestReciveSMS;
-import com.sahanbcs.models.recive.ResponceReciveSMS;
 import com.sahanbcs.models.send.RequestSendSMS;
 import com.sahanbcs.models.send.ResponceSendSMS;
-import com.sahanbcs.services.Connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class smsRecive {
+public class SmsService {
 
-    public static void main(String[] args) throws IOException {
 
-//        URL url = new URL("http://localhost:8880/smsrecive");
-//        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//        connection.setRequestProperty("Content-Type", "application/json; utf-8");
-//        connection.setRequestProperty("accept", "application/json");
-//        connection.setDoOutput(true);
+    public static void sendSms(List<String> sse ,String msg) throws IOException {
 
-//        String jsonInputString =  "{\"name\":\"sahan\" , \"age\":\"3\"}";
 
-        HttpURLConnection connection = Connection.getSmsReciveConnection();
+        HttpURLConnection connection = Connection.getSmsSendConnection();
 
-        RequestReciveSMS rr = new RequestReciveSMS("1.0","23112" ,"tel:94777323654","my testing message from app1","APP_000001",Encoding.Text);
+
+
+        RequestSendSMS rr = new RequestSendSMS("APP_999999", "password", "1.0", sse, msg, "77000", DiliveryStatus.DELIVERYREPORTREQUIRED, Encoding.Binarysms, 15.75);
         ObjectMapper mapper = new ObjectMapper();
         String jsonInputString = mapper.writeValueAsString(rr);
+
 
         try(OutputStream os = connection.getOutputStream()) {
             byte[] input = jsonInputString.getBytes("utf-8");
@@ -52,10 +44,12 @@ public class smsRecive {
             }
             System.out.println(response.toString());
 
-            ResponceReciveSMS nn = mapper.readValue(response.toString(),ResponceReciveSMS.class);
+            ResponceSendSMS nn = mapper.readValue(response.toString(),ResponceSendSMS.class);
 
             System.out.println( "The Out Put \n\t"  +nn.toString());
         }
 
+
     }
+
 }

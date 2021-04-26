@@ -69,5 +69,18 @@ public class AddressEntry {
     public void setOperator(String operator) {
         this.operator = operator;
     }
+
+
+    @Override
+    public String toString() {
+        return "AddressEntry{" +
+                "address='" + address + '\'' +
+                ", timeStamp='" + timeStamp + '\'' +
+                ", messageId='" + messageId + '\'' +
+                ", statusCode='" + statusCode + '\'' +
+                ", statusDetail='" + statusDetail + '\'' +
+                ", operator='" + operator + '\'' +
+                '}';
+    }
 }
 

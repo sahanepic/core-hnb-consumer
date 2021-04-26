@@ -7,6 +7,7 @@ import com.sahanbcs.models.Enmorators.RDiliveryStatus;
 import com.sahanbcs.models.delivey.RequestDiliveryStatusReport;
 import com.sahanbcs.models.send.RequestSendSMS;
 import com.sahanbcs.models.send.ResponceSendSMS;
+import com.sahanbcs.services.Connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,11 +22,13 @@ public class StatusDilivery {
 
     public static void main(String[] args) throws IOException {
 
-        URL url = new URL("http://localhost:8880/smsdiliverystatusreport");
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestProperty("Content-Type", "application/json; utf-8");
-        connection.setRequestProperty("accept", "application/json");
-        connection.setDoOutput(true);
+//        URL url = new URL("http://localhost:8880/smsdiliverystatusreport");
+//        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//        connection.setRequestProperty("Content-Type", "application/json; utf-8");
+//        connection.setRequestProperty("accept", "application/json");
+//        connection.setDoOutput(true);
+
+        HttpURLConnection connection = Connection.getSmsStatusDiliveryConnection();
 
 //        String jsonInputString =  "{\"name\":\"sahan\" , \"age\":\"3\"}";
 
